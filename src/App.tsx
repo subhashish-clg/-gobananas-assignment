@@ -42,7 +42,7 @@ interface Post extends Data {
 
 function App() {
   const [data, setData] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
