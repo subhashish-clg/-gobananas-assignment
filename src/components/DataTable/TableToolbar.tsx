@@ -43,16 +43,10 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          Posts
         </Typography>
       )}
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
+      
         <Box>
           <TextField
             value={value}
@@ -69,7 +63,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             }}
           />
         </Box>
-      )}
+    
     </Toolbar>
   );
 }
