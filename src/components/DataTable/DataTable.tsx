@@ -62,7 +62,7 @@ export default function DataTable({
 
         return matches;
       }),
-    [deferredQuery]
+    [rows, searchableFields, deferredQuery]
   );
 
   const handleRequestSort = (
@@ -131,7 +131,7 @@ export default function DataTable({
       page * rowsPerPage,
       page * rowsPerPage + rowsPerPage
     );
-  }, [rows, order, orderBy, page, rowsPerPage, deferredQuery]);
+  }, [searchedMatches, rows, order, orderBy, page, rowsPerPage, deferredQuery]);
 
   return (
     <Box sx={{ width: "100%", paddingInline: "2rem", marginTop: "3rem" }}>
