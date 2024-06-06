@@ -1,4 +1,5 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import DataTable from "./components/DataTable";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
+
+      <DataTable />
     </Box>
   );
 }
