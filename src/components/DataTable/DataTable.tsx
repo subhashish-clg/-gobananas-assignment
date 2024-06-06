@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useDeferredValue, useMemo } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -25,17 +25,16 @@ export default function DataTable({
   searchableFields: (keyof Data)[];
   headCells: readonly HeadCell[];
 }) {
-  const [query, setQuery] = React.useState<string>("");
-  const deferredQuery = React.useDeferredValue(query);
-  const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
-  const [selected, setSelected] = React.useState<readonly number[]>([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [searchedMatches, setSearchMatches] = React.useState<Data[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const deferredQuery = useDeferredValue(query);
+  const [order, setOrder] = useState<Order>("asc");
+  const [orderBy, setOrderBy] = useState<keyof Data>("calories");
+  const [selected, setSelected] = useState<readonly number[]>([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const searchedMatches = React.useMemo(
+  const searchedMatches = useMemo(
     () =>
       rows.filter((row) => {
         let matches = true;
@@ -125,7 +124,7 @@ export default function DataTable({
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const visibleRows = React.useMemo(() => {
+  const visibleRows = useMemo(() => {
     const rowsToBeDisplayed = deferredQuery !== "" ? searchedMatches : rows;
 
     return stableSort(rowsToBeDisplayed, getComparator(order, orderBy)).slice(
